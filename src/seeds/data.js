@@ -1,5 +1,5 @@
 exports.seed = function(knex) {
-  return knex("users")
+  return knex("")
     .del()
     .then(function() {
       // Inserts seed entries
