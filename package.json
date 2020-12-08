@@ -14,6 +14,7 @@
     "seed": "knex seed:run"
   },
   "dependencies": {
+    "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "dotenv": "^8.2.0",
     "eslint-plugin-prettier": "^3.2.0",

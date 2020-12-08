@@ -3,31 +3,48 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const db = require("./knex");
+// const bodyParser = require("body-parser");
+// app.use(bodyParser.urlencoded({ extended: false })); //
+// app.use(bodyParser.json());
+app.use(express.json());
 
 app.use(express.static(path.resolve(__dirname, "../..", "dist")));
 
 const port = process.env.PORT || 3000;
 
-app.get("/all", async (req, res) => {
+app.get("/api/items", async (req, res) => {
   try {
-    const items = await db.select().table("items");
-    res.send(items); //どっちも送りたい?
+    const month = req.query.month;
+    let items;
+    // const day = req.query.day;
+    if (!month) {
+      items = await db
+        .select()
+        .table("items")
+        .innerJoin("tags", "tags.id", "items.tag_id"); //join
+      // console.log(items);
+    } else {
+      items = await db
+        .select()
+        .table("items")
+        .where("item_month", month)
+        .innerJoin("tags", "tags.id", "items.tag_id");
+    }
+    res.send(items); //どっちも送りたい? or res.json
   } catch (err) {
-    console.error("Error loading !", err);
+    console.error("Error getting!", err);
     res.sendStatus(500);
   }
-  app.get("/:month", async (req, res) => {
-    console.log("aaa", req.params.month);
-    try {
-      const items = await db.select
-        .table("items")
-        .where("item_month", req.params.month);
-      res.json(items);
-    } catch (err) {
-      console.error("Error loading !", err);
-      res.sendStatus(500);
-    }
-  });
+});
+
+app.post("/api/items", async (req, res) => {
+  console.log("posted!!");
+  try {
+    ///////
+  } catch (err) {
+    console.error("Error posting!", err);
+    res.sendStatus(500);
+  }
 });
 
 app.get("*", (req, res) => {

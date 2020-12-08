@@ -1,7 +1,8 @@
 <template>
-  <div class="Cards">
-    Card
-    <item />
+  <div class="Card">
+    <template v-for="(card, index) in cards">
+      <item :key="card.id" :card="card" :index="index" />
+    </template>
   </div>
 </template>
 
@@ -9,6 +10,7 @@
 import Item from "./Item.vue";
 export default {
   name: "Cards",
+  props: ["cards"],
   components: {
     item: Item,
   },

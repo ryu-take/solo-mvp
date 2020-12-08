@@ -4,7 +4,7 @@ exports.up = function(knex) {
     table.string("item_name", 20).notNull();
     table.integer("item_price", 6).notNull();
     table.integer("item_month", 2).notNull();
-    table.integer("item_day", 2).notNull();
+    table.integer("item_day", 2) /*.notNull()*/;
     table
       .integer("tag_id", 2)
       .unsigned()
