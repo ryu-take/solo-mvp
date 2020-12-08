@@ -1,9 +1,9 @@
 <template>
   <div class="Navbar">
     Navbar
-    <div class="Months">
+    <form action="">
       月:
-      <select name="月">
+      <select name="月" class="months">
         <option>01</option>
         <option>02</option>
         <option>03</option>
@@ -17,8 +17,9 @@
         <option>11</option>
         <option>12</option>
       </select>
-    </div>
-    <div class="Days"></div>
+      <button type="button" @click="test">Go</button>
+      <div class="Days"></div>
+    </form>
   </div>
 </template>
 
@@ -26,6 +27,12 @@
 export default {
   name: "Navbar",
   props: {},
+  methods: {
+    test: function() {
+      console.log(document.querySelector(".months").value);
+      // let month = document.querySelector(".months").value;
+    },
+  },
 };
 </script>
 

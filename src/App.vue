@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    it's app
+    <div class="title">Waste Checker</div>
     <navbar />
     <money-card />
   </div>
@@ -18,4 +18,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.title {
+  color: gold;
+}
+</style>
