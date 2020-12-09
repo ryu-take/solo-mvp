@@ -28,6 +28,7 @@ import axios
 
     <form @submit.prevent class="add">
       買ったものを追加する
+      <br />
       <label class="addtextlabel">
         買ったものの名前(20文字以内):<input
           type="text"
@@ -42,6 +43,7 @@ import axios
           required
         />
       </label>
+      <br />
       <label class="addmonthdiv">
         買った月:<select class="addmonth">
           <option>1</option>
@@ -65,7 +67,10 @@ import axios
           <option>趣味</option>
         </select>
       </label>
-      <input type="submit" class="addbutton" @click="add" value="add" />
+      <div class="addbuttons">
+        <input type="submit" class="addbutton" @click="add" value="add" />
+        <input type="reset" value="リセット" />
+      </div>
     </form>
   </div>
 </template>
@@ -120,6 +125,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+.month {
+  display: inline;
+}
 .filter {
   display: inline;
 }
@@ -131,5 +139,8 @@ export default {
   padding: 10px;
   margin: 10px;
   border: 2px solid yellowgreen;
+}
+.addbuttons {
+  margin-left: 50px;
 }
 </style>

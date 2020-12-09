@@ -1,7 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
-const { innerJoin } = require("./knex");
 const app = express();
 const db = require("./knex");
 // const bodyParser = require("body-parser");
@@ -23,13 +22,13 @@ app.get("/api/items", async (req, res) => {
         .select()
         .table("items")
         .innerJoin("tags", "tags.id", "items.tag_id"); //join
-      // console.log(items);
     } else {
       items = await db
         .select()
         .table("items")
         .where("item_month", month)
         .innerJoin("tags", "tags.id", "items.tag_id");
+      //junction
       // .innerJoin("j", "items.id", "j.item_id")
       // .innerJoin("tags", "tags.id", "j.tag_id");
     }
