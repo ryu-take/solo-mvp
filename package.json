@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "yarn build && node ./src/server/index",
+    "start": "node ./src/server/index",
     "serve": "vue-cli-service serve",
     "dev": "nodemon ./src/server/index",
     "build": "vue-cli-service build",
