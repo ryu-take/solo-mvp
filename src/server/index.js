@@ -4,7 +4,7 @@ const path = require("path");
 const app = express();
 const db = require("./knex");
 // const bodyParser = require("body-parser");
-// app.use(bodyParser.urlencoded({ extended: false })); //
+// app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json());
 app.use(express.json());
 
@@ -28,19 +28,24 @@ app.get("/api/items", async (req, res) => {
         .select()
         .table("items")
         .where("item_month", month)
-        .innerJoin("tags", "tags.id", "items.tag_id");
+        .innerJoin("j", "items.id", "j.item_id")
+        .innerJoin("tags", "tags.id", "j.tag_id");
     }
-    res.send(items); //どっちも送りたい? or res.json
+    res.send(items);
   } catch (err) {
     console.error("Error getting!", err);
     res.sendStatus(500);
   }
 });
 
-app.post("/api/items", async (req, res) => {
-  console.log("posted!!");
+app.post("/api/items", (req, res) => {
   try {
-    ///////
+    console.log(req.body);
+    db.select()
+      .table("items")
+      .insert(req.body)
+      .catch(() => {});
+    res.send("yay");
   } catch (err) {
     console.error("Error posting!", err);
     res.sendStatus(500);

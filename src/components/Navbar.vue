@@ -36,7 +36,7 @@ import axios
         />
       </label>
       <label class="addpricelabel">
-        買ったものの値段(6桁まで):<input
+        買ったものの値段(10桁まで):<input
           type="text"
           class="addprice"
           required
@@ -110,8 +110,9 @@ export default {
           tag_id,
         })
         .then((data) => {
-          console.log(data.data);
+          console.log("data", data.data);
         });
+      return false;
     },
   },
 };
